@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Login Page</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel='stylesheet' href='{% static 'index1.css' %}'>
+    
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form method="post">
+    {% csrf_token %}
+        <h3>Login Here</h3>
+       
+        <label for="police_id">Police ID</label>
+        <input type="text" placeholder="Enter Your Police ID" id="police_id" name="police_id" required>
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password" name="pass" required>
+
+        {% if login_failed_message %}
+            <p id="loginFailedMessage" style="color: red; text-align: center;margin-top:15px;">{{ login_failed_message }}</p>
+        {% endif %}
+        <script>
+            var loginFailedMessage = document.getElementById("loginFailedMessage");
+            if (loginFailedMessage) {
+                setTimeout(function() {
+                    loginFailedMessage.style.display = "none";
+                }, 3000);
+            }
+        </script>
+        <button type="submit">Log In</button>
+        <a href="{% url 'start' %}#contact" >If not Registered then contact us</a>
+        <a href="{% url 'start' %}" >Home Page</a>
+        </form>  
+
+</body>
+
+</html>

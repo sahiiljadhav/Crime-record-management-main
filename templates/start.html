@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Crime Record Management System</title>
+  {%load static%}
+  <link rel='stylesheet' href='{% static 'style1.css' %}'>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <h1 class="logo">Crime Record Management System</h1>
+      <ul class="nav-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="signup/">Sign Up</a></li>
+        <li class="dropdown">
+          <a class="dropbtn">Login</a>
+          <div class="dropdown-content">
+              <a href="login/police">Login as Police Officer</a>
+              <a href="login/citizens">Login as Citizens</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <br>
+  <br>
+  <div class="container">
+    <img src="{% static 'india.webp' %}"  class="centered-image"  width="200" height="300">
+    <div class="crime-system-box">
+        <h2>What is Crime Management System?</h2>
+        <p>The Crime Management System is a sophisticated platform designed to streamline the recording, analysis, and management of crime-related data. It provides law enforcement agencies and organizations with powerful tools to effectively track, investigate, and prevent crimes, ultimately contributing to safer communities.</p>
+      </div>
+      <div id="about"></div>
+      <br>
+    <div class="crime-system-box">
+        <h2>About Us</h2>
+        <p>Welcome to our mission, the Crime Record Management System.</p>
+        <div class="about-section">
+          <div class="about-text">
+            <p>Behind every successful system lies a story, and ours begins with a vision to revolutionize the way crime data is managed and utilized.</p>
+            <p>Imagine a world where law enforcement agencies can access, analyze, and act upon vital information swiftly and effectively. That's the world we are striving to create.</p>
+            <p>At Crime Record Management System, we're not just a team; we're a force for change. Our dedicated professionals come from diverse backgrounds, blending expertise in technology, law enforcement, and data analytics.</p>
+            <p>Together, we're breaking barriers and pushing boundaries to ensure our system empowers law enforcement agencies, enhances community safety, and upholds justice.</p>
+          </div>
+        </div>
+        <h3>Our Mission</h3>
+        <p>Our mission is simple yet profound: to harness the power of technology and data to create a safer and more just society. We are committed to:</p>
+        <ul>
+          <li>Providing law enforcement agencies with cutting-edge tools for crime data management.</li>
+          <li>Enabling data-driven decision-making to enhance public safety.</li>
+          <li>Building strong partnerships with communities to foster trust and collaboration.</li>
+        </ul>
+        <h3>Join Us in Our Journey</h3>
+        <p>Together, we can make a difference. Join us in our journey to transform the landscape of crime record management and create a safer future for all.</p>
+      </div>
+      <br><br><br><br><br><br><br><br>
+        <div class="contact-us" id="contact">
+          <h2>Contact Us</h2>
+          <p>If you have any questions, concerns, or information related to crimes or our Crime Record Management System, please feel free to contact us using the form below.</p>
+          <form action="{% url 'start' %}" method="post" class="contact-form">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="name">Your Name:</label>
+              <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email:</label>
+              <input type="email" id="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message:</label>
+              <textarea id="message" name="message" rows="4" placeholder="Your message here..." required></textarea>
+            </div>
+            <button type="submit" class="submit-button">Submit</button>
+          </form>
+        </div>
+      </div>
+  </div>
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+  <br><br><br><br><br>
+</body>
+</html>

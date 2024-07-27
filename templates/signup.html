@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Signup Page</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    {% load static %}
+    <link rel='stylesheet' href='{% static 'signup.css' %}'>
+    
+    
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form id="signupForm" action="" method="post">
+        <h3>Signup Here</h3>
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group">
+                <label for="name">First Name</label>
+                <input type="text" placeholder="First Name" name="fname" id="fname" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Last Name</label>
+                <input type="text" placeholder="Last Name" name="lname" id="lname">
+            </div>
+        </div>
+
+        <label for="username">Username</label>
+        <input type="text" placeholder="Username" name="username" id="username" required>
+
+        <label for="email">Email</label>
+        <input type="email" placeholder="Email" name="email" id="email" required>
+
+        <label for="password1">Password</label>
+        <input type="password" placeholder="Password" id="password1" name="password1" required>
+
+        <label for="password2">Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" id="password2" name="password2" required>
+        <p id="passwordError"></p>
+        <br>
+
+        {% if signup_failed %}
+            <p id="signupFailedMessage" style="color: red; text-align: center;">{{ signup_failed }}</p>
+        {% endif %}
+
+        <script>
+            var signupFailedMessage = document.getElementById("signupFailedMessage");
+            if (signupFailedMessage) {
+                setTimeout(function() {
+                    signupFailedMessage.style.display = "none";
+                }, 3000);
+            }
+        </script>
+
+        <script>
+            document.getElementById("signupForm").addEventListener("submit", function(event) {
+                var password = document.getElementById("password1").value;
+                var confirmPassword = document.getElementById("password2").value;
+                var passwordError = document.getElementById("passwordError");
+        
+                if (password !== confirmPassword) {
+                    passwordError.textContent = "Passwords do not match";
+                    event.preventDefault();
+        
+                    // Display the message for 5 seconds
+                    setTimeout(function() {
+                        passwordError.textContent = ""; // Clear the message
+                    }, 2000);
+                } else {
+                    passwordError.textContent = "";
+                }
+            });
+        </script>
+
+        <button type="submit">Signup</button>
+
+        <a href="{% url 'login_citizens' %}" >I already have an account</a>
+        <a href="{% url 'start' %}" >Home Page</a>
+</form>
+</body>
+</html>
